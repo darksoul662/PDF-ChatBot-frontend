@@ -5,6 +5,7 @@ import { UploadComponent } from './upload/upload.component';
 import { ChatComponent } from './chat/chat.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   { path: 'upload', component: UploadComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }

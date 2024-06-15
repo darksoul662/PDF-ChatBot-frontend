@@ -1,1 +1,10 @@
-<p>chat works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <input formControlName="query" placeholder="Enter your query" />
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="result">
+  <div  *ngFor="let res of result['message']">
+    <div>{{res}}</div>
+  </div>
+</div>
