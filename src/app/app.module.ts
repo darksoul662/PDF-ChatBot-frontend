@@ -7,6 +7,8 @@ import {MainModule} from "./main/main.module";
 import {RouterModule, Routes} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 
+
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -17,7 +19,9 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

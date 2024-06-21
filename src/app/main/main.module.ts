@@ -6,15 +6,17 @@ import { ChatComponent } from './chat/chat.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { Upload1Component } from './upload1/upload1.component';
 
 const routes: Routes = [
-  { path: 'upload', component: UploadComponent },
   { path: 'chat', component: ChatComponent },
+  { path: 'upload', component: UploadComponent },
+  { path: 'upload1', component: Upload1Component },
   { path: '', redirectTo: '/upload', pathMatch: 'full' }
 ];
 
 @NgModule({
-  declarations: [MainComponent, UploadComponent, ChatComponent],
+  declarations: [MainComponent, UploadComponent, ChatComponent, Upload1Component],
   exports: [
     MainComponent
   ],
