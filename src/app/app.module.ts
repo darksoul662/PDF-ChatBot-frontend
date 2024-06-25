@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import {MainModule} from "./main/main.module";
 import {RouterModule, Routes} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+// Import FontAwesomeModule
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -26,6 +28,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FontAwesomeModule // Make sure this line is present
+,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes, {
             // enableTracing: true
