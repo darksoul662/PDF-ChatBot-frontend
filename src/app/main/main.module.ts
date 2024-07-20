@@ -9,12 +9,17 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { Upload1Component } from './upload1/upload1.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {AuthenticationModule} from "./authentication/authentication.module";
+import { Chatt1Component } from './chatt1/chatt1.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'upload', component: UploadComponent },
   { path: 'upload1', component: Upload1Component },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'chatt1', component: Chatt1Component },
+  { path: '', redirectTo: '/chatt1', pathMatch: 'full' },
+  
+
   {
     path: 'auth',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
@@ -24,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainComponent, UploadComponent, ChatComponent, Upload1Component],
+  declarations: [MainComponent, UploadComponent, ChatComponent, Upload1Component, Chatt1Component],
   exports: [
     MainComponent
   ],
@@ -34,7 +39,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     FontAwesomeModule, // Make sure this line is present
-    AuthenticationModule
+    AuthenticationModule,
+    FormsModule
   ]
 })
 export class MainModule { }
