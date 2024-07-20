@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthenticationService } from './authentication.service';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {AuthenticationComponent} from "./authentication.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,7 +22,8 @@ const authRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(authRoutes),
-    FaIconComponent
+    FaIconComponent,
+    ReactiveFormsModule
   ],
   providers: [AuthenticationService]
 })

@@ -1,36 +1,22 @@
 <div class="login-container">
     <div class="login-box">
       <h2>Login</h2>
-      <form>
+      <form [formGroup]="loginForm" >
         <div class="input-group">
           <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Type your username" />
+          <input type="text" id="username"  formControlName="username" placeholder="Type your username" />
         </div>
         <div class="input-group">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Type your password" />
+          <input type="password" id="password"  formControlName="password" placeholder="Type your password" />
         </div>
         <div class="forgot-password">
           <a href="#">Forgot password?</a>
         </div>
-        <button type="button" class="login-button">Login</button>
-<!--        <div class="social-login">-->
-<!--          <p>Or Sign Up Using</p>-->
-<!--          <div class="social-buttons">-->
-<!--            <button type="button" class="facebook">-->
-<!--              <fa-icon [icon]="faFacebookF"></fa-icon>-->
-<!--            </button>-->
-<!--            <button type="button" class="twitter">-->
-<!--              <fa-icon [icon]="faTwitter"></fa-icon>-->
-<!--            </button>-->
-<!--            <button type="button" class="google">-->
-<!--              <fa-icon [icon]="faGoogle"></fa-icon>-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </div>-->
+        <button type="button" class="login-button" (click)="onSubmit()">Login</button>
         <div class="signup-link">
           <p>Or Sign Up Using</p>
-          <a href="signup">Sign Up</a>
+          <a href="signup" (click)="redirectRegister()">Sign Up</a>
         </div>
       </form>
     </div>

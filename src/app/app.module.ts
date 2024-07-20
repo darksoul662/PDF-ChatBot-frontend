@@ -9,6 +9,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 // Import FontAwesomeModule
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -23,17 +25,22 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FontAwesomeModule // Make sure this line is present
-    
-,
+    FontAwesomeModule, // Make sure this line is present
+    BrowserAnimationsModule,
     ReactiveFormsModule,
+     ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-top-center',
+            preventDuplicates: true,
+            closeButton: true,
+            maxOpened: 0,
+            autoDismiss: true
+        }),
     RouterModule.forRoot(appRoutes, {
             // enableTracing: true
         }),
