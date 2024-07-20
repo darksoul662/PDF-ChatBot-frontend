@@ -28,6 +28,9 @@ const authRoutes: Routes = [
     Chatt1Component,
     HeaderComponent
   ],
+  exports: [
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(authRoutes),

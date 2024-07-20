@@ -19,7 +19,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./content/content.module').then(m => m.ContentModule)
   },
-    { path: 'chat', component: ChatComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
