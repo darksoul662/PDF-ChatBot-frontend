@@ -10,7 +10,7 @@
   background-color: #3bafda;
   margin-top: 0;
   margin-bottom: 0;
-  height: 30px;
+  height: 40px;
   align-content: center;
 }
 :host{
@@ -21,7 +21,7 @@
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 25px;
   align-items: center;
 }
 

@@ -9,6 +9,10 @@ import {Upload1Component} from "./upload1/upload1.component";
 import {Chatt1Component} from "./chatt1/chatt1.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from "./header/header.component";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
+import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
+import {LoadingBarModule} from "@ngx-loading-bar/core";
 
 
 const authRoutes: Routes = [
@@ -35,7 +39,11 @@ const authRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(authRoutes),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    LoadingBarModule,
+    NgxSpinnerModule,
+    MatProgressBarModule,
+    NgxSpinnerComponent
   ]
 })
 export class ContentModule { }

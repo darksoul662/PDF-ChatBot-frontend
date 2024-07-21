@@ -1,5 +1,8 @@
 <app-header></app-header>
-<div class="body">
+<div class="body" style="padding-top: 100px; padding-bottom: 50px">
+  <h2>Please Upload your file</h2>
+</div>
+<div class="body" style="padding-bottom:0px">
 <div class="upload" [ngClass]="uploadClass">
   <div class="upload__info">
     <svg
@@ -26,7 +29,7 @@
     hidden
   />
   <label for="fileInput" class="upload__button">
-    <div class="upload__button__text">Upload</div>
+    <div class="upload__button__text">Select</div>
   </label>
   <div class="upload__hint">Uploading...</div>
   <div class="upload__progress">
@@ -43,4 +46,8 @@
     Completed
   </div>
 </div>
+</div>
+<div class="body" style="padding-top: 50px; padding-bottom: 200px">
+  <label  >
+<button  [ngStyle]="valid ? {} : {'background-color': 'grey'}" style="background-color: #066e93; border-radius: 5px; padding-left: 35px; padding-right: 35px" for="fileInput" class="upload__button">Upload</button>  </label>
 </div>
