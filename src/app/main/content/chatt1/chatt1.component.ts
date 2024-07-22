@@ -16,7 +16,36 @@ import {CookieService} from "ngx-cookie-service";
   styleUrl: './chatt1.component.scss'
 })
 export class Chatt1Component {
-  messages =[];
+  messages =[
+    [
+        "hi",
+        " Hello! Based on the information provided in the invoice, this is a B2C (business-to-consumer) transaction involving a restaurant service with the HSN code 996331, which is exempt from reverse charges, taking place in Telangana, India. The invoice total is INR 525 (Five Hundred and Twenty Five Rupees), with taxes amounting to INR 25 (Twenty Five Rupees). The restaurant is named \"City Diamond Haleem\", and the customer's address is given as \"490/40/1, Tappachabutra Rd, Jagadamba Nagar, Asif Nagar, Hyderabad, Telangana, India\". Swiggy Limited, with GSTIN 36AAFCB7707D1ZV, issued the invoice on behalf of the unregistered restaurant."
+    ],
+    [
+        "hi",
+        " The name of the restaurant mentioned in the invoice is City Diamond Haleem and its location is Inside Jbs Bus Station Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ],
+    [
+        "hi",
+        " The City Diamond Haleem restaurant is located Inside Jbs Bus Station Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ],
+    [
+        "hi",
+        " The City Diamond Haleem restaurant is located inside Jbs Bus Station, Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ],
+    [
+        "hi",
+        " The City Diamond Haleem restaurant is located inside Jbs Bus Station, Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ],
+    [
+        "hi",
+        " The City Diamond Haleem restaurant is located inside JBS Bus Station, Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ],
+    [
+        "hi",
+        " The City Diamond Haleem restaurant is located Inside Jbs Bus Station Gandhi Nagar, Nehru Nagar Colony, West Marredpally, Secunderabad, Telangana, India."
+    ]
+];
   newMessage = '';
   typeSelected: string = "";
 

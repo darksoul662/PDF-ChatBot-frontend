@@ -13,6 +13,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
 import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
 import {LoadingBarModule} from "@ngx-loading-bar/core";
+import {MatButton} from "@angular/material/button";
 
 
 const authRoutes: Routes = [
@@ -43,7 +44,8 @@ const authRoutes: Routes = [
     LoadingBarModule,
     NgxSpinnerModule,
     MatProgressBarModule,
-    NgxSpinnerComponent
+    NgxSpinnerComponent,
+    MatButton
   ]
 })
 export class ContentModule { }

@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 <ngx-spinner
   size="medium"
@@ -6,13 +5,13 @@
 >
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
-<div class="chat-container">
+<div class="chat-container" >
   <div class="button-container">
-    <button (click)="startNewChat()" class="left-button">Start New Chat</button>
-    {{cookieService.get('file_name')}}
-    <button class="right-button" (click)="downloadConversation()">Download Conversation</button>
+    <button (click)="startNewChat()" style="margin-right: 50px" mat-flat-button class="left-button">Start New Chat</button>
+    <header style="font-weight: 600; vertical-align: center; padding-top: 5px">{{cookieService.get('file_name')}}</header>
+    <button class="right-button" mat-flat-button style="margin-left: 50px" (click)="downloadConversation()">Download Conversation</button>
   </div>
-  <div class="input-container" style="margin-top: 20px; height: 80vh; border-radius: 10px">
+  <div class="input-container" style="margin-top: 20px; height: 69vh; border-radius: 10px">
     <div class="messages" style="overflow: auto; padding-right: 25px; padding-left: 25px; padding-top: 25px" #messagesContainer>
       <ng-container *ngFor="let message of messages">
         <div class="message sent">

@@ -10,7 +10,8 @@
   background-color: #3bafda;
   margin-top: 0;
   margin-bottom: 0;
-  height: 40px;
+  height: 60px;
+  font-size: 22px;
   align-content: center;
 }
 :host{

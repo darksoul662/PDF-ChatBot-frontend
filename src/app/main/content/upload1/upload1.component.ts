@@ -12,6 +12,8 @@ export class Upload1Component {
   uploadClass: string = 'upload';
   fileName: string = 'No file selected';
   valid = false;
+  invalidFile = false;
+  selectedFile:File | null = null;
 
   constructor(private http: HttpClient,
               private  router: Router,
@@ -54,8 +56,22 @@ export class Upload1Component {
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
+      if (input.files[0].type !== 'application/pdf') {
+        this.invalidFile = true;
+        this.valid = false;
+        return;
+      }
+      this.valid = true;
+      this.invalidFile = false;
       this.fileName = input.files[0].name;
-      this.startUpload(input.files[0]);
+      this.selectedFile = input.files[0];
     }
   }
+
+  startUploadProcess() {
+    if (this.selectedFile) {
+      this.startUpload(this.selectedFile);
+    }
+  }
+
 }

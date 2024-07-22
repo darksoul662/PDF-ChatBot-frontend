@@ -8,6 +8,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {AuthenticationModule} from "./authentication/authentication.module";
 import {ContentModule} from "./content/content.module";
+import { AdminComponent } from './admin/admin.component';
+import {AdminModule} from "./admin/admin.module";
 
 const routes: Routes = [
 
@@ -35,6 +37,7 @@ const routes: Routes = [
     FontAwesomeModule, // Make sure this line is present
     AuthenticationModule,
     ContentModule,
+    AdminModule
   ]
 })
 export class MainModule { }

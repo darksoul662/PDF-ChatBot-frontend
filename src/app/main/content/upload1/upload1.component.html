@@ -1,8 +1,12 @@
 <app-header></app-header>
-<div class="body" style="padding-top: 100px; padding-bottom: 50px">
+<div style="height: 81vh; max-height: 100%; background-color: #eceffc">
+<div class="body"  style=" padding-top: 100px; padding-bottom: 20px">
   <h2>Please Upload your file</h2>
 </div>
-<div class="body" style="padding-bottom:0px">
+  <div class="body"  style=" padding-top: 10px; color: #f10000; padding-bottom: 30px">
+  <header style="font-size: 23px" *ngIf="invalidFile">Invalid File</header>
+</div>
+<div class="body"  style="padding-bottom:0px; padding-bottom: 80px">
 <div class="upload" [ngClass]="uploadClass">
   <div class="upload__info">
     <svg
@@ -49,5 +53,6 @@
 </div>
 <div class="body" style="padding-top: 50px; padding-bottom: 200px">
   <label  >
-<button  [ngStyle]="valid ? {} : {'background-color': 'grey'}" style="background-color: #066e93; border-radius: 5px; padding-left: 35px; padding-right: 35px" for="fileInput" class="upload__button">Upload</button>  </label>
+<button (click)="startUploadProcess()"  [ngStyle]="valid ? {'background-color': '#3bafda'} : {'background-color': 'grey'}" style="background-color: #066e93; border-radius: 5px; padding-left: 35px; padding-right: 35px" for="fileInput" class="upload__button">Upload</button>  </label>
+</div>
 </div>

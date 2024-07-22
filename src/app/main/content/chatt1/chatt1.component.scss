@@ -3,7 +3,6 @@
   flex-direction: column; /* This will stack the child elements vertically */
   justify-content: space-between;
   align-items: center;
-  height: 94vh;
   background-color: lightblue;
   padding: 10px;
   box-sizing: border-box;
@@ -17,13 +16,13 @@
 
 .left-button {
   float: left;
-  width: 300px;
+  width: 250px;
   /* Add your styles for the left button here */
 }
 
 .right-button {
   float: right;
-    width: 300px;
+    width: 250px;
 
   /* Add your styles for the right button here */
 }
@@ -90,7 +89,7 @@
   flex-grow: 1;
   width: 100%; /* This will make the messages take the full width of the parent container */
   text-align: center;
-  font-size: 1.5em;
+  font-size: 16px;
   color: #333;
   padding-bottom: 50px;
 }

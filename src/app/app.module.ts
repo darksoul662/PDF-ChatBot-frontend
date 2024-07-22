@@ -52,7 +52,9 @@ const appRoutes: Routes = [
     MainModule,
     LoadingBarModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

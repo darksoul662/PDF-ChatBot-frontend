@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit{
 
   loginForm!: FormGroup;
   login_error: boolean = false;
+  error_msg: string = "";
 
   constructor(private formBuilder: FormBuilder,
               private loginService: AuthenticationService,
@@ -45,13 +46,19 @@ export class LoginComponent implements OnInit{
     this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe((data : any) => {
       console.log(data)
       if(data['status'] == true){
+        if(data['data']['is_blocked'] == true){
+          this.login_error = true;
+          this.error_msg = "User is blocked";
+          return;
+        }
+
         this.cookieService.set('access_token', data['data']['access_token']);
         this.cookieService.set('refresh_token', data['data']['refresh_token']);
         this.cookieService.set('name', data['data']['name']);
         this.cookieService.set('email', data['data']['email']);
         this.cookieService.set('is_admin', data['data']['is_admin']);
         localStorage.setItem('access_token', data['data']['access_token']);
-        this.toastr.success('Login Successful');
+        // this.toastr.success('Login Successful');
         if(data['data']['is_admin'] == true){
           this.router.navigate(['/admin']);
         }else{
@@ -59,6 +66,7 @@ export class LoginComponent implements OnInit{
         }
       }else {
         this.login_error = true;
+        this.error_msg = "Invalid Credentials";
       }
     });
   }
