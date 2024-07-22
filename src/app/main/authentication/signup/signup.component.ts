@@ -28,6 +28,10 @@ export class SignupComponent implements OnInit{
     }
   }
   registerForm!: FormGroup;
+  login_error : boolean= false;
+  error_msg : string = '';
+  is_success : boolean = false;
+  success_msg : string = '';
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -60,8 +64,8 @@ export class SignupComponent implements OnInit{
   onSubmit() {
     console.log("onsubmit invoked")
     if(this.registerForm.value.password != this.registerForm.value.confirmPassword){
-      this.toastr.clear(); // Clear any existing toasts
-      this.toastr.error("Password and Confirm Password doesn't match");
+      this.login_error = true;
+      this.error_msg="Password and Confirm Password should be same";
       return;
     }
     if (this.registerForm.invalid) {
@@ -77,16 +81,20 @@ export class SignupComponent implements OnInit{
       console.log(data)
       // @ts-ignore
       if(data['status']==true){
-        this.toastr.success('Registration Successful');
-        this.router.navigate(['/login']);
+        this.login_error=false;
+        this.is_success=true;
+        this.success_msg='Registration Successful';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 5000);
       }else{
+        this.login_error = true;
         // @ts-ignore
         if('email' in data['message']) {
           // @ts-ignore
-          this.toastr.clear(); // Clear any existing toasts
-          this.toastr.error( ' Email already exists');
+          this.error_msg= ' Email already exists';
         }else{
-          this.toastr.error('Registration Failed');
+           this.error_msg= 'Registration Failed';
         }
       }
     }

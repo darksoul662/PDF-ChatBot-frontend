@@ -1,6 +1,7 @@
 <div class="login-container">
     <div class="login-box">
       <h2>Login</h2>
+      <h5 *ngIf="login_error" style="color: red">Invalid Username or Password</h5>
       <form [formGroup]="loginForm" >
         <div class="input-group">
           <label for="username">Username</label>
@@ -11,7 +12,7 @@
           <input type="password" id="password"  formControlName="password" placeholder="Type your password" />
         </div>
         <div class="forgot-password">
-          <a href="#">Forgot password?</a>
+          <a href="#"></a>
         </div>
         <button type="button" class="login-button" (click)="onSubmit()">Login</button>
         <div class="signup-link">

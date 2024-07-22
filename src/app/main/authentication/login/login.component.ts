@@ -13,10 +13,9 @@ import {subscribeOn} from "rxjs";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  faFacebookF = faFacebookF;
-  faTwitter = faTwitter;
-  faGoogle = faGoogle;
+
   loginForm!: FormGroup;
+  login_error: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private loginService: AuthenticationService,
@@ -58,8 +57,8 @@ export class LoginComponent implements OnInit{
         }else{
           this.router.navigate(['/upload1']);
         }
-      }else{
-        this.toastr.error('Invalid Username or Password');
+      }else {
+        this.login_error = true;
       }
     });
   }
