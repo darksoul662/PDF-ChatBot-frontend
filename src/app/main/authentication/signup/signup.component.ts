@@ -68,6 +68,11 @@ export class SignupComponent implements OnInit{
       this.error_msg="Password and Confirm Password should be same";
       return;
     }
+    if(this.registerForm.value.password.length < 6){
+      this.login_error = true;
+      this.error_msg="Password should be atleast 6 characters";
+      return;
+    }
     if (this.registerForm.invalid) {
       return;
     }
@@ -76,7 +81,8 @@ export class SignupComponent implements OnInit{
       "email":this.registerForm.value.email,
       "password":this.registerForm.value.password,
     }
-    console.log(this.registerService.register(payload).subscribe(data=>
+    console.log("payload",payload)
+    this.registerService.register(payload).subscribe(data=>
     {
       console.log(data)
       // @ts-ignore
@@ -98,7 +104,7 @@ export class SignupComponent implements OnInit{
         }
       }
     }
-    ));
+    );
   }
 
   redirectToLogin() {

@@ -1,8 +1,8 @@
 <div class="login-container">
     <div class="login-box">
       <h2>Sign Up</h2>
-      <h5 *ngIf="login_error" style="color: red">{{error_msg}}</h5>
-      <h5 *ngIf="is_success" style="color: green">{{success_msg}}</h5>
+      <h5 *ngIf="login_error" style="color: red; font-size: 20px">{{error_msg}}</h5>
+      <h5 *ngIf="is_success" style="color: green; font-size: 20px">{{success_msg}}</h5>
       <form [formGroup]="registerForm"  >
         <div class="input-group">
           <label for="username">Name</label>
