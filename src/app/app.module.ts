@@ -55,6 +55,8 @@ const appRoutes: Routes = [
   providers: [
     provideAnimationsAsync()
   ],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

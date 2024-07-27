@@ -10,6 +10,10 @@ import {AuthenticationModule} from "./authentication/authentication.module";
 import {ContentModule} from "./content/content.module";
 import { AdminComponent } from './admin/admin.component';
 import {AdminModule} from "./admin/admin.module";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
 
@@ -37,7 +41,7 @@ const routes: Routes = [
     FontAwesomeModule, // Make sure this line is present
     AuthenticationModule,
     ContentModule,
-    AdminModule
+    AdminModule,
   ]
 })
 export class MainModule { }

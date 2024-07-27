@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit{
           this.error_msg = "User is blocked";
           return;
         }
-
+        this.cookieService.set('id', data['data']['id']);
         this.cookieService.set('access_token', data['data']['access_token']);
         this.cookieService.set('refresh_token', data['data']['refresh_token']);
         this.cookieService.set('name', data['data']['name']);

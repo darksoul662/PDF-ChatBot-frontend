@@ -22,4 +22,16 @@ export class AdminService {
     return this.http.delete('http://localhost:8000/admin/user?id='+id);
   }
 
+  getFullFileDetails(){
+    return this.http.get('http://127.0.0.1:8000/file/full');
+  }
+
+  deleteFile(id: number){
+    return this.http.delete('http://localhost:8000/file?id='+id);
+  }
+
+downloadFile(id: number) {
+  return this.http.get('http://localhost:8000/file/download/' + id, { responseType: 'blob' });
+}
+
 }

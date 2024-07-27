@@ -1,55 +1,86 @@
-import {Component, ElementRef, NgIterable, ViewChild} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {NgxSpinnerService} from "ngx-spinner";
+import { Component, ElementRef, NgIterable, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import {CookieService} from "ngx-cookie-service";
-  export interface Message {
-     text: string;
-     isOwner: boolean;
-  }
+import { CookieService } from "ngx-cookie-service";
+import {ToastrService} from "ngx-toastr";
+import {timeout} from "rxjs";
+
+export interface Message {
+  text: string;
+  isOwner: boolean;
+}
+
+export interface Chat {
+  id: number;
+  file_name: string;
+  file: string;
+  user_id: number;
+  uploaded_at: string;
+}
 
 @Component({
   selector: 'app-chatt1',
   templateUrl: './chatt1.component.html',
-  styleUrl: './chatt1.component.scss'
+  styleUrls: ['./chatt1.component.scss']
 })
-export class Chatt1Component {
-  messages =[
+export class Chatt1Component implements OnInit {
+  messages = [
     [
-        "Please Ask me a question",
-      " "
+      "Hi",
+      "Please Ask me a question"
     ],
-];
+  ];
   newMessage = '';
   typeSelected: string = "";
+  chatHistory: Chat[] = [];
+  showButtons = false;
+  file_id =  -1;
+  filename = '';
+  chatBeingEdited: Chat | null = null;
 
-    @ViewChild('messagesContainer') private messagesContainer: ElementRef | undefined;
+
+  @ViewChild('messagesContainer') private messagesContainer: ElementRef | undefined;
+
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute,
+              private router: Router,
+              private spinnerService: NgxSpinnerService,
+              protected cookieService: CookieService,
+              ) {
+    this.typeSelected = 'ball-fussion';
+  }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+     // @ts-ignore
+      this.file_id = this.route.snapshot.paramMap.get('id');
+    });
+
+    if(this.file_id == null){
+      this.startNewChat();
+    }
+    this.getfileList();
+  }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
+
   private scrollToBottom(): void {
     try {
-      // @ts-ignore
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
-    } catch(err) { }
+      this.messagesContainer!.nativeElement.scrollTop = this.messagesContainer!.nativeElement.scrollHeight;
+    } catch (err) { }
   }
-
-  constructor(private http: HttpClient,
-              private  router: Router,
-              private spinnerService: NgxSpinnerService,
-              protected cookieService: CookieService) {
-        this.typeSelected = 'ball-fussion';
-  } // Inject HttpClient
 
   sendMessage() {
     this.spinnerService.show();
 
     if (this.newMessage.trim()) {
-      this.http.post('http://127.0.0.1:8000/api/conversation/', { message: this.newMessage }).subscribe((response: any) => {
-        this.messages = response.message
+      this.http.post('http://127.0.0.1:8000/api/conversation?id='+this.cookieService.get('id')+"&file_id="+this.file_id, { message: this.newMessage }).subscribe((response: any) => {
+        this.messages = response.message;
         this.spinnerService.hide();
       });
     }
@@ -104,7 +135,60 @@ export class Chatt1Component {
     return y;
   }
 
-  startNewChat(){
-    this.router.navigate(['/upload1'])
+  getfileList() {
+    this.http.get('http://127.0.0.1:8000/file?id=' + this.cookieService.get('id')).subscribe((response: any) => {
+      let chatindex = response.findIndex((item: any) => item.id == this.file_id);
+      this.filename = response[chatindex].file_name;
+      this.chatHistory = response;
+    });
   }
+
+  startNewChat() {
+    this.router.navigate(['/upload1']);
+  }
+
+  openChat(chat: Chat) {
+    this.spinnerService.show();
+    this.http.get('http://127.0.0.1:8000/api/restore', { params: { id: this.cookieService.get('id'), file_id: chat.id } }).subscribe((response: any) => {
+      this.file_id = chat.id;
+      let chatindex = this.chatHistory.findIndex((item: any) => item.id == this.file_id);
+      this.filename = this.chatHistory[chatindex].file_name;
+      this.spinnerService.hide();
+      if (response.message != null && response.message.length > 0) {
+        this.messages = response.message;
+      }else{
+        this.messages = [
+          [
+            "Hi",
+            "Please Ask me a question"
+          ],
+          ];
+      }
+    });
+    console.log('Open chat:', chat);
+  }
+
+  onMouseEnter(event: any) {
+    this.showButtons = true;
+  }
+
+  onMouseLeave(event: any) {
+    this.showButtons = false;
+  }
+
+deleteFile(chat: Chat, event: Event) {
+  event.stopPropagation();
+  this.http.delete('http://127.0.0.1:8000/file?id=' + chat.id).subscribe((response: any) => {
+    console.log(response);
+  });
+  }
+  startEditing(chat: Chat, event: Event) {
+  event.stopPropagation();
+  this.chatBeingEdited = chat;
+  }
+  finishEditing(chat: Chat, event: Event) {
+  event.stopPropagation();
+  // Save changes to chat.file_name here...
+  this.chatBeingEdited = null;
+}
 }

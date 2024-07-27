@@ -10,8 +10,12 @@
 .button-container {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 70%;
   padding-top: 10px;
+}
+
+.selected {
+  background-color: #ddd; /* or any color you like */
 }
 
 .left-button {
@@ -75,7 +79,7 @@
   display: flex;
   padding-top: 0;
   justify-content: space-between;
-  width: 70%; /* Move this line from the HTML file to here */
+  width: 90%;
   background: white;
   border-top: 1px solid #ccc;
   border-radius: 5px;
@@ -115,4 +119,22 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.list-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hover-buttons {
+  display: none;
+  position: absolute;
+  margin-right: 10px;
+  right: 5px
+}
+
+.list-item:hover .hover-buttons {
+  display: flex;
 }

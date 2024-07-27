@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AdminService} from "./admin.service";
+import {MatTabChangeEvent} from "@angular/material/tabs";
 
 export interface User {
   id: number;
@@ -16,68 +17,10 @@ export interface User {
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  displayedColumns: string[] = ['id', 'name', 'email',  'is_admin', 'is_blocked','delete'];
-  users: User[] = [
-    {
-      id: 1,
-      name: 'admin',
-      email: 'admin@123.com',
-      last_login: '2024-07-20T09:35:13.798688Z',
-      is_admin: true,
-      is_blocked: false
-    },
-    {
-      id: 1,
-      name: 'laxman',
-      email: 'laxman@krinati.co',
-      last_login: '2024-07-20T10:10:05.483424Z',
-      is_admin: false,
-      is_blocked: false
-    },
-    {
-      id: 1,
-      name: 'manu@gmail.com',
-      email: 'laxmanr566@gmail.com',
-      last_login: '2024-07-22T06:24:54.383622Z',
-      is_admin: false,
-      is_blocked: false
-    }
-  ];
-  constructor(private adminService: AdminService) {
-    this.adminService.getUsers().subscribe((data) => {
-      // @ts-ignore
-      if(data && data['status']==true){
-        // @ts-ignore
-        this.users = data['data'];
-      }
-    });
-  }
 
-  blockUser(user: User){
-    this.adminService.blockUser(user.id).subscribe((data) => {
-      // @ts-ignore
-      if(data && data['status']==true){
-        user.is_blocked = true;
-      }
-    });
-  }
+  activeTab = 0;
 
-   UnblockUser(user: User){
-    this.adminService.unblockUser(user.id).subscribe((data) => {
-      // @ts-ignore
-      if(data && data['status']==true){
-        user.is_blocked = false;
-      }
-    });
+  onTabChange(event: MatTabChangeEvent) {
+    this.activeTab = event.index;
   }
-  deleteUser(user: User){
-    this.adminService.deleteUser(user.id).subscribe((data) => {
-      // @ts-ignore
-      if(data && data['status']==true){
-          this.users = this.users.filter((u) => u.id != user.id);
-      }
-    });
-  }
-
-
 }

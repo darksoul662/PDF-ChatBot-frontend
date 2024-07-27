@@ -13,14 +13,17 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
 import {LoadingBarHttpClientModule} from "@ngx-loading-bar/http-client";
 import {LoadingBarModule} from "@ngx-loading-bar/core";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatListItem, MatListModule, MatNavList} from "@angular/material/list";
+import {MatSidenavContainer, MatSidenavModule} from "@angular/material/sidenav";
 
 
 const authRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'upload', component: UploadComponent },
   { path: 'upload1', component: Upload1Component },
-  { path: 'chatt1', component: Chatt1Component },
+  { path: 'chatt1/:id', component: Chatt1Component },
   { path: '', redirectTo: '/upload1', pathMatch: 'full' }
 ];
 
@@ -45,7 +48,15 @@ const authRoutes: Routes = [
     NgxSpinnerModule,
     MatProgressBarModule,
     NgxSpinnerComponent,
-    MatButton
+    MatButton,
+    MatIcon,
+    MatListItem,
+    MatNavList,
+    MatSidenavContainer,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ]
 })
 export class ContentModule { }

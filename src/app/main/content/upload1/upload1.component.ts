@@ -32,7 +32,7 @@ export class Upload1Component {
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-    const req = new HttpRequest('POST', 'http://localhost:8000/api/FileUploadView/', formData, {
+    const req = new HttpRequest('POST', 'http://localhost:8000/api/FileUploadView?id='+this.cookieService.get("id"), formData, {
       reportProgress: true
     });
 
@@ -47,7 +47,9 @@ export class Upload1Component {
         this.uploadClass = 'upload uploaded-after';
       }, 1000);
       this.cookieService.set('file_name',file.name );
-      this.router.navigate(['/chatt1']);
+      console.log(event)
+      console.log(event.body.file_id)
+      this.router.navigate(['/chatt1/'+event.body.file_id],);
     }
     });
 
