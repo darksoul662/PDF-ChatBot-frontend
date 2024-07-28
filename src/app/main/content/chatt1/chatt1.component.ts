@@ -50,6 +50,9 @@ export class Chatt1Component implements OnInit {
               private spinnerService: NgxSpinnerService,
               protected cookieService: CookieService,
               ) {
+    if(this.cookieService.get('access_token') == ''){
+      this.router.navigate(['/login']);
+    }
     this.typeSelected = 'ball-fussion';
   }
 
@@ -58,11 +61,11 @@ export class Chatt1Component implements OnInit {
      // @ts-ignore
       this.file_id = this.route.snapshot.paramMap.get('id');
     });
-
     if(this.file_id == null){
       this.startNewChat();
     }
     this.getfileList();
+
   }
 
   ngAfterViewChecked() {
@@ -140,6 +143,8 @@ export class Chatt1Component implements OnInit {
       let chatindex = response.findIndex((item: any) => item.id == this.file_id);
       this.filename = response[chatindex].file_name;
       this.chatHistory = response;
+          this.openChat({id: this.file_id, file_name: '', file: '', user_id: 0, uploaded_at: ''})
+      return response;
     });
   }
 
@@ -152,7 +157,10 @@ export class Chatt1Component implements OnInit {
     this.http.get('http://127.0.0.1:8000/api/restore', { params: { id: this.cookieService.get('id'), file_id: chat.id } }).subscribe((response: any) => {
       this.file_id = chat.id;
       let chatindex = this.chatHistory.findIndex((item: any) => item.id == this.file_id);
+      console.log(response)
+      console.log(this.chatHistory)
       this.filename = this.chatHistory[chatindex].file_name;
+      console.log(response)
       this.spinnerService.hide();
       if (response.message != null && response.message.length > 0) {
         this.messages = response.message;

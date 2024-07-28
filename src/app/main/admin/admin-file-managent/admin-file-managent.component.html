@@ -2,10 +2,13 @@
   <div style="display: flex;  justify-content: space-between; align-items: center">
   <header style="font-size: 23px; padding-top: 20px;padding-bottom: 20px; font-weight: 500">
     File Manager</header>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="fileDetailsDS.data.length"></mat-paginator>
     <mat-form-field style="margin-top: 20px;">
     <input matInput  (keyup)="applyFilter($event)" style="margin-right: 0;padding-top: 0;" placeholder="Search">
 </mat-form-field>
     </div>
+
+
   <table mat-table [dataSource]="fileDetailsDS" class="user-table mat-elevation-z8" style="padding-left: 20px">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef style="padding-left: 20px" class="header-cell"> ID
@@ -59,4 +62,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="data-row"></tr>
   </table>
+
 </div>

@@ -16,6 +16,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {AppModule} from "../../../app.module";
 import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
@@ -32,6 +33,7 @@ import {MatInput, MatInputModule} from "@angular/material/input";
     MatTabsModule,
     MatIconModule,
     MatInputModule,
+    MatPaginatorModule
   ]
 })
 export class AdminFileManagentModule { }

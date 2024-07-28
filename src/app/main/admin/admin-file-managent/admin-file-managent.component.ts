@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AdminService} from "../admin.service";
 import {User} from "../admin.component";
 import {MatTableDataSource} from "@angular/material/table";
 import { saveAs } from 'file-saver';
+import {MatPaginator} from "@angular/material/paginator";
 
 export interface File{
   id: number;
@@ -21,6 +22,7 @@ export class AdminFileManagentComponent implements OnInit {
 
   fileDetails:File[] = []
   fileDetailsDS: MatTableDataSource<File>= new MatTableDataSource<File>();
+    @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   displayedColumns: string[] = ['id', 'file_name','username', 'uploaded_at', 'user_id','download','delete'];
 
   constructor(private adminService: AdminService) {
@@ -29,6 +31,8 @@ export class AdminFileManagentComponent implements OnInit {
       if(data && data['status']==true){
         // @ts-ignore
         this.fileDetailsDS = new MatTableDataSource<File>(data['data']);
+        // @ts-ignore
+        this.fileDetailsDS.paginator = this.paginator;
       }
       console.log(this.fileDetails)
     });
@@ -37,6 +41,7 @@ export class AdminFileManagentComponent implements OnInit {
   downloadFile(file: File) {
   this.adminService.downloadFile(file.id).subscribe((data: Blob) => {
     saveAs(data, file.file_name);
+
   });
 }
 
@@ -84,6 +89,8 @@ applyFilter(event: any) {
 }
 
   ngOnInit(): void {
+        // @ts-ignore
+    this.fileDetailsDS.paginator = this.paginator;
 
   }
 
