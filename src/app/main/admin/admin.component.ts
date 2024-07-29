@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AdminService} from "./admin.service";
 import {MatTabChangeEvent} from "@angular/material/tabs";
+import {CookieService} from "ngx-cookie-service";
 
 export interface User {
   id: number;
@@ -17,6 +18,12 @@ export interface User {
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
+
+  constructor(private cookieService: CookieService) {
+    if(this.cookieService.get('is_admin') !== 'true') {
+      window.location.href = '/login';
+    }
+  }
 
   activeTab = 0;
 

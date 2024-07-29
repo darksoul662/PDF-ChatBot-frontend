@@ -20,10 +20,10 @@ import {MatSidenavContainer, MatSidenavModule} from "@angular/material/sidenav";
 
 
 const authRoutes: Routes = [
-  { path: 'chat', component: ChatComponent },
-  { path: 'upload', component: UploadComponent },
-  { path: 'upload1', component: Upload1Component },
-  { path: 'chatt1/:id', component: Chatt1Component },
+  { path: 'chat/:id', component: Chatt1Component },
+  { path: 'upload', component: Upload1Component },
+  { path: 'upload1', component: UploadComponent },
+  { path: 'chat/:id', component: ChatComponent },
   { path: '', redirectTo: '/upload1', pathMatch: 'full' }
 ];
 

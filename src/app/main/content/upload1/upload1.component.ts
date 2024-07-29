@@ -59,7 +59,7 @@ export class Upload1Component {
       console.log(event)
       console.log(event.body.file_id)
       this.spinnerService.hide();
-      this.router.navigate(['/chatt1/'+event.body.file_id],);
+      this.router.navigate(['/chat/'+event.body.file_id],);
 
     }
     });
@@ -70,9 +70,9 @@ export class Upload1Component {
       // this.spinnerService.hide();
       console.log(response)
       if (response.message != null && response.message.length > 0) {
-        this.router.navigate(['/chatt1/'+chat.id],);
+        this.router.navigate(['/chat/'+chat.id],);
       }else{
-        this.router.navigate(['/chatt1/'+chat.id],);
+        this.router.navigate(['/chat/'+chat.id],);
         // this.messages = [
         //   [
         //     "Hi",

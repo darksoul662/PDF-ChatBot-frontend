@@ -26,7 +26,7 @@ export class HeaderComponent {
   logout(): void {
     this.cookieService.deleteAll();
     localStorage.clear();
-    this.toastr.success('Logged out successfully');
+    // this.toastr.success('Logged out successfully');
     this.buttondisabled = true;
     setTimeout(() => {
       window.location.href = '/login';

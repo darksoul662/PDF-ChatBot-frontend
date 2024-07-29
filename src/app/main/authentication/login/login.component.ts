@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit{
               private toastr: ToastrService,
   ) {
     if(this.cookieService.get('access_token') != ''){
-      this.router.navigate(['/upload1']);
+      this.router.navigate(['/upload']);
     }
 
   }
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit{
         if(data['data']['is_admin'] == true){
           this.router.navigate(['/admin']);
         }else{
-          this.router.navigate(['/upload1']);
+          this.router.navigate(['/upload']);
         }
       }else {
         this.login_error = true;

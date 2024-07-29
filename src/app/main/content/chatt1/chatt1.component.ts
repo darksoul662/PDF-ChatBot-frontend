@@ -149,7 +149,7 @@ export class Chatt1Component implements OnInit {
   }
 
   startNewChat() {
-    this.router.navigate(['/upload1']);
+    this.router.navigate(['/upload']);
   }
 
   openChat(chat: Chat) {

@@ -4,7 +4,7 @@
       <h5 *ngIf="login_error" style="color: red; font-size: 18px">{{error_msg}}</h5>
       <form [formGroup]="loginForm" >
         <div class="input-group">
-          <label for="username">Username</label>
+          <label for="username">Email</label>
           <input type="text" id="username"  formControlName="username" placeholder="Type your username" />
         </div>
         <div class="input-group">

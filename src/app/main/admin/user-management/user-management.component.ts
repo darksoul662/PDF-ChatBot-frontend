@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AdminService} from "../admin.service";
 import {User} from "../admin.component";
 import {position} from "html2canvas/dist/types/css/property-descriptors/position";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-user-management',
