@@ -24,7 +24,7 @@ const authRoutes: Routes = [
   { path: 'upload', component: Upload1Component },
   { path: 'upload1', component: UploadComponent },
   { path: 'chat/:id', component: ChatComponent },
-  { path: '', redirectTo: '/upload1', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 
