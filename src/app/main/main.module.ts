@@ -1,20 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MainComponent} from "./main.component";
-import { UploadComponent } from './upload/upload.component';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './content/chat/chat.component';
 import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AuthenticationModule} from "./authentication/authentication.module";
+import {ContentModule} from "./content/content.module";
+import { AdminComponent } from './admin/admin.component';
+import {AdminModule} from "./admin/admin.module";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
-  { path: 'upload', component: UploadComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: '', redirectTo: '/upload', pathMatch: 'full' }
+
+  {
+    path: 'auth',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./content/content.module').then(m => m.ContentModule)
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
-  declarations: [MainComponent, UploadComponent, ChatComponent],
+  declarations: [MainComponent],
   exports: [
     MainComponent
   ],
@@ -22,7 +37,11 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule, // Make sure this line is present
+    AuthenticationModule,
+    ContentModule,
+    AdminModule,
   ]
 })
 export class MainModule { }

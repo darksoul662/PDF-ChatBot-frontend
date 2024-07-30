@@ -1,0 +1,24 @@
+<div class="login-container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <h5 *ngIf="login_error" style="color: red; font-size: 18px">{{error_msg}}</h5>
+      <form [formGroup]="loginForm" >
+        <div class="input-group">
+          <label for="username">Email</label>
+          <input type="text" id="username"  formControlName="username" placeholder="Type your username" />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password"  formControlName="password" placeholder="Type your password" />
+        </div>
+        <div class="forgot-password">
+          <a href="#"></a>
+        </div>
+        <button type="button" class="login-button" (click)="onSubmit()">Login</button>
+        <div class="signup-link">
+          <p>Or Sign Up Using</p>
+          <a href="signup" (click)="redirectRegister()">Sign Up</a>
+        </div>
+      </form>
+    </div>
+  </div>

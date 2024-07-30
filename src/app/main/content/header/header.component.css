@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+
+:host{
+   background-color: #3bafda;
+    font-family: Roboto, sans-serif;
+}
+
+*{
+  background-color: #3bafda;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 60px;
+  font-size: 22px;
+  align-content: center;
+}
+:host{
+   background-color: #3bafda;
+    font-family: Roboto, sans-serif;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  align-items: center;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-button {
+  background: #e32828;
+  margin-left: 10px; /* adjust as needed */
+  height: 20px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none; /* This will remove the border */
+}

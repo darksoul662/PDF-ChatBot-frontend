@@ -1,0 +1,30 @@
+<div class="login-container">
+    <div class="login-box">
+      <h2>Sign Up</h2>
+      <h5 *ngIf="login_error" style="color: red; font-size: 20px">{{error_msg}}</h5>
+      <h5 *ngIf="is_success" style="color: green; font-size: 20px">{{success_msg}}</h5>
+      <form [formGroup]="registerForm"  >
+        <div class="input-group">
+          <label for="username">Name</label>
+          <input type="text" id="username" formControlName="name" placeholder="Type your username" />
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email"  formControlName="email"  placeholder="Type your email" />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password"  formControlName="password"  placeholder="Type your password" />
+        </div>
+        <div class="input-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password"  formControlName="confirmPassword"  placeholder="Confirm your password" />
+        </div>
+        <button type="button" class="login-button" (click)="onSubmit()">Sign Up</button>
+        <div class="signup-link">
+          <p>Already have an account?</p>
+          <a href="#">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>

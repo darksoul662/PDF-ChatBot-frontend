@@ -1,0 +1,55 @@
+<ngx-spinner
+  size="medium"
+  type="ball-beat"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<app-header></app-header>
+<mat-sidenav-container >
+  <mat-sidenav #sidenav mode="side" style="width: 20%; padding-top: 5px; margin-top: 0; border-radius: 0" opened>
+  <div style="display: flex; font-weight: 600; border-radius: 0px; background-color: #4bddff; justify-content: center; padding-top: 12px; height: 35px; margin-top: 0">
+    <header style="font-size: 28px; text-align: center;">History</header>
+  </div>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let chat of chatHistory" (click)="openChat(chat)" class="list-item" style="border-radius: 0px" [class.selected]="chat.id === file_id">
+  <div class="hover-buttons">
+<!--    <button *ngIf="chat !== chatBeingEdited" (click)="startEditing(chat, $event)" mat-icon-button style="width: fit-content; padding-left: 2px;padding-right: 2px;padding-top: 10px;padding-bottom: 0; margin-top: 10px; margin-right: 7px" color="primary">-->
+<!--      <mat-icon>edit</mat-icon>-->
+<!--    </button>-->
+    <input style="height: 40px; padding: 0;margin: 0" height="20px" *ngIf="chat === chatBeingEdited" [(ngModel)]="chat.file_name" (click)="$event.stopPropagation()" />
+    <button *ngIf="chat === chatBeingEdited" (click)="finishEditing(chat, $event)" mat-icon-button style="width: fit-content; padding-left: 2px;padding-right: 2px;padding-top: 20px;padding-bottom: 0;margin-top: 10px; margin-right: 7px" color="primary">
+      <mat-icon>check</mat-icon>
+    </button>
+    <button (click)="deleteFile(chat, $event)" mat-icon-button style="width: fit-content;padding-left: 2px; margin-top: 10px;padding-right: 2px;" color="primary"><mat-icon>delete</mat-icon></button>
+  </div>
+  <p *ngIf="chat !== chatBeingEdited" style="font-size: 20px;padding-top: 20px" >{{chat.file_name}}</p>
+</mat-list-item>
+  </mat-nav-list>
+</mat-sidenav>
+
+  <mat-sidenav-content>
+<div class="chat-container" >
+  <div class="button-container">
+    <button (click)="startNewChat()" style="margin-right: 50px" mat-flat-button class="left-button">Start New Chat</button>
+    <header style="font-weight: 600; vertical-align: center; padding-top: 5px">{{ filename }}</header>
+    <button class="right-button" mat-flat-button style="margin-left: 50px" (click)="downloadConversation()">Download Conversation</button>
+  </div>
+  <div class="input-container" style="margin-top: 20px; height: 69vh; border-radius: 10px">
+    <div class="messages" style="overflow: auto; padding-right: 25px; padding-left: 25px; padding-top: 25px" #messagesContainer>
+      <ng-container *ngFor="let message of messages">
+        <div class="message sent">
+          <span>{{ message[0] }}</span>
+        </div>
+        <div class="message received">
+          <span>{{ message[1] }}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div *ngIf="true" class="loading-line"></div> <!-- Loading line -->
+  </div>
+  <div class="input-container" style="margin-top: 20px; width: 50%; height: 7vh">
+    <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type your message..." />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+  </mat-sidenav-content>
