@@ -13,30 +13,6 @@ export class UserManagementComponent {
 
   displayedColumns: string[] = ['id', 'name', 'email',  'is_admin', 'is_blocked','delete'];
   users: User[] = [
-    {
-      id: 1,
-      name: 'admin',
-      email: 'admin@123.com',
-      last_login: '2024-07-20T09:35:13.798688Z',
-      is_admin: true,
-      is_blocked: false
-    },
-    {
-      id: 1,
-      name: 'laxman',
-      email: 'laxman@krinati.co',
-      last_login: '2024-07-20T10:10:05.483424Z',
-      is_admin: false,
-      is_blocked: false
-    },
-    {
-      id: 1,
-      name: 'manu@gmail.com',
-      email: 'laxmanr566@gmail.com',
-      last_login: '2024-07-22T06:24:54.383622Z',
-      is_admin: false,
-      is_blocked: false
-    }
   ];
   constructor(private adminService: AdminService) {
     this.adminService.getUsers().subscribe((data) => {
